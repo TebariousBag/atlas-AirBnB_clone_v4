@@ -7,10 +7,13 @@ from flask import Flask, render_template, make_response, jsonify
 from flask_cors import CORS
 from flasgger import Swagger
 from flasgger.utils import swag_from
+from api.v1.views import app_views
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
+# ------------------ #
+# changed CORS to allow all origins
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 
