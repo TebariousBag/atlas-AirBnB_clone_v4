@@ -7,6 +7,8 @@ from models.amenity import Amenity
 from models.place import Place
 from os import environ
 from flask import Flask, render_template
+import uuid
+
 app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
@@ -17,8 +19,8 @@ def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-# change route
-@app.route('/0-hbnb/', strict_slashes=False)
+# changed app route
+@app.route('/1-hbnb/', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
     states = storage.all(State).values()
@@ -34,11 +36,14 @@ def hbnb():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
 
-	# change route, add cache id
-    return render_template('/0-hbnb/',
+    # add cache id
+    cache_id = uuid.uuid4()
+
+    return render_template('1-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
-                           places=places)
+                           places=places,
+                           cache_id=cache_id)
 
 
 if __name__ == "__main__":
