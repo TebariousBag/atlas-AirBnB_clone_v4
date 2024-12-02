@@ -36,6 +36,9 @@ def hbnb():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
 
+	# Debugging information
+    print("Amenities:", amenities)
+
 # ------------------ #
 # added cache_id, and changed to 1-hbnb.html
     cache_id = uuid.uuid4()
@@ -45,6 +48,8 @@ def hbnb():
                            places=places,
                            cache_id=cache_id)
 
+# ------------------ #
+# turned on debugger
 if __name__ == "__main__":
     """ Main Function """
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
