@@ -36,8 +36,6 @@ def hbnb():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
 
-	# Debugging information
-    print("Amenities:", amenities)
 
 # ------------------ #
 # added cache_id, and changed to 1-hbnb.html
