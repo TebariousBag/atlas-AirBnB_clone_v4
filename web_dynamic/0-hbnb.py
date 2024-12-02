@@ -19,7 +19,7 @@ def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-# changed route
+# changed app route
 @app.route('/0-hbnb/', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
@@ -38,6 +38,7 @@ def hbnb():
 
     # add cache id
     cache_id = uuid.uuid4()
+
     return render_template('0-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
