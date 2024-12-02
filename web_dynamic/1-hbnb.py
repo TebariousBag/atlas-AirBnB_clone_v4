@@ -13,14 +13,14 @@ app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
 
+
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-# ------------------ #
 # changed app route
-@app.route('/1-hbnb/')
+@app.route('/0-hbnb/', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
     states = storage.all(State).values()
@@ -36,18 +36,15 @@ def hbnb():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
 
-
-# ------------------ #
-# added cache_id, and changed to 1-hbnb.html
+    # add cache id
     cache_id = uuid.uuid4()
-    return render_template('1-hbnb.html',
+    return render_template('0-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
                            places=places,
                            cache_id=cache_id)
 
-# ------------------ #
-# turned on debugger
+
 if __name__ == "__main__":
     """ Main Function """
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
