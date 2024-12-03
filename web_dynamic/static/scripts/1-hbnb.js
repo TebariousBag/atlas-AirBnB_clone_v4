@@ -7,14 +7,15 @@ $(document).ready(function() {
     // add checkbox
 	$('input[type="checkbox"]').change(function() {
 		// get data for each
-	  const amenityId = $(this).attr('data-id');
-	  const amenityName = $(this).attr('data-name');
+	  const id = $(this).attr('data-id');
+	  const name = $(this).attr('data-name');
   
 	  // if checked add to selected
 	  if ($(this).is(':checked')) {
-		selected[amenityId] = amenityName;
+		selected[id] = name;
 	  } else {
-		delete selected[amenityId];
+		// else remove from selected
+		delete selected[id];
 	  }
       // join selected
 	  const amenitiesList = Object.values(selected).join(', ');
